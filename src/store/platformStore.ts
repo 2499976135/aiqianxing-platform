@@ -68,6 +68,9 @@ interface PlatformState {
   getCheckInsBySchoolCode: (code: string) => CheckIn[];
   resetToSeed: () => void;
 
+  /** 记录一次超期未打卡提醒（写入操作留痕） */
+  sendOverdueReminder: (pointId: string, detail: string) => void;
+
   // ========== 审核队列统计 ==========
   pendingClaimCount: () => number;
   pendingCheckInCount: () => number;
@@ -362,6 +365,18 @@ export const usePlatformStore = create<PlatformState>()(
           checkIns: [...seedCheckIns],
           auditLogs: [],
         });
+      },
+
+      sendOverdueReminder: (pointId, detail) => {
+        const state = get();
+        createAuditLog(
+          state,
+          "发送超期未打卡提醒",
+          "point",
+          pointId,
+          detail,
+        );
+        set({ auditLogs: [...state.auditLogs] });
       },
 
       pendingClaimCount: () =>

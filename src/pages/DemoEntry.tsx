@@ -7,6 +7,7 @@ import {
   Smartphone,
   RotateCcw,
   ArrowUpRight,
+  ArrowLeft,
   ArrowRight,
 } from "lucide-react";
 import { usePlatformStore } from "@/store/platformStore";
@@ -91,9 +92,18 @@ export default function DemoEntry() {
               </div>
             </div>
           </div>
-          <span className="rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
-            Demo 演示版
-          </span>
+          <div className="flex items-center gap-3">
+            <span className="rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
+              演示导航
+            </span>
+            <Link
+              to="/"
+              className="inline-flex items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-primary"
+            >
+              <ArrowLeft className="h-3 w-3" />
+              返回官网
+            </Link>
+          </div>
         </header>
 
         {/* Hero */}

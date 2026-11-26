@@ -1,31 +1,46 @@
-import { Outlet, NavLink, Link } from "react-router-dom";
+import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   MapPin,
   ImagePlus,
   ClipboardCheck,
   Link as LinkIcon,
+  BellRing,
   Menu,
   X,
-  ArrowLeft,
+  LogOut,
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { usePlatformStore } from "@/store/platformStore";
+import { signOut } from "@/lib/auth";
+import { getOverduePoints } from "@/lib/reminders";
 
-const navItems = [
+const navItems: {
+  to: string;
+  end?: boolean;
+  icon: typeof LayoutDashboard;
+  label: string;
+  needBadge?: boolean;
+  needOverdue?: boolean;
+}[] = [
   { to: "/admin", end: true, icon: LayoutDashboard, label: "工作台" },
   { to: "/admin/points", icon: MapPin, label: "点位管理" },
   { to: "/admin/materials", icon: ImagePlus, label: "素材中心" },
   { to: "/admin/reviews", icon: ClipboardCheck, label: "审核队列", needBadge: true },
+  { to: "/admin/reminders", icon: BellRing, label: "跟进提醒", needOverdue: true },
   { to: "/admin/links", icon: LinkIcon, label: "链接管理" },
 ];
 
 export default function AdminLayout() {
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pendingClaims = usePlatformStore((s) => s.pendingClaimCount());
   const pendingCheckIns = usePlatformStore((s) => s.pendingCheckInCount());
   const totalPending = pendingClaims + pendingCheckIns;
+  const points = usePlatformStore((s) => s.points);
+  const checkIns = usePlatformStore((s) => s.checkIns);
+  const overdueCount = getOverduePoints(points, checkIns).length;
 
   const sidebar = (
     <>
@@ -74,6 +89,11 @@ export default function AdminLayout() {
                       {totalPending > 99 ? "99+" : totalPending}
                     </span>
                   )}
+                  {item.needOverdue && overdueCount > 0 && (
+                    <span className="tnum grid h-5 min-w-5 place-items-center rounded-full bg-warning/15 px-1.5 text-[10px] font-semibold text-warning">
+                      {overdueCount}
+                    </span>
+                  )}
                 </>
               )}
             </NavLink>
@@ -86,13 +106,16 @@ export default function AdminLayout() {
           <span>待审 · 认领 {pendingClaims}</span>
           <span>打卡 {pendingCheckIns}</span>
         </div>
-        <Link
-          to="/"
-          className="inline-flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-primary"
+        <button
+          onClick={() => {
+            signOut();
+            navigate("/admin/login", { replace: true });
+          }}
+          className="inline-flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-destructive"
         >
-          <ArrowLeft className="h-3 w-3" />
-          返回 Demo 总览
-        </Link>
+          <LogOut className="h-3 w-3" />
+          退出登录
+        </button>
       </div>
     </>
   );

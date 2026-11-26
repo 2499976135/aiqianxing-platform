@@ -36,7 +36,7 @@ export default function AdminLinks() {
         {pointsWithLinks.map((p) => {
           const partner = partners.find((pt) => pt.id === p.partnerId);
           const url = p.accessToken
-            ? `${window.location.origin}/p/${p.accessToken}`
+            ? `${window.location.origin}${window.location.pathname}#/p/${p.accessToken}`
             : "";
           return (
             <Card key={p.id}>

@@ -131,7 +131,11 @@ export default function ClaimDirectory() {
               return (
                 <Card
                   key={p.id}
-                  className={isLocked ? "border-warning/30 bg-warning/[0.04]" : ""}
+                  className={
+                    isLocked
+                      ? "border-warning/25 bg-warning/[0.03] opacity-75"
+                      : ""
+                  }
                 >
                   <CardContent className="py-4">
                     <div className="flex items-start justify-between mb-2">
@@ -155,6 +159,11 @@ export default function ClaimDirectory() {
                     <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                       {p.description}
                     </p>
+                    {isLocked && (
+                      <p className="mb-3 rounded-md bg-warning/[0.06] px-2.5 py-1.5 text-[11px] leading-relaxed text-warning">
+                        已有合作方提交认领意向，机构审核中，暂不可重复提交。
+                      </p>
+                    )}
                     <div className="flex items-center justify-between">
                       {isLocked ? (
                         <Badge variant="warning">
@@ -169,7 +178,7 @@ export default function ClaimDirectory() {
                         disabled={isLocked}
                         onClick={() => setClaimingPoint(p.id)}
                       >
-                        {isLocked ? "已被锁定" : "提交认领意向"}
+                        {isLocked ? "申请处理中" : "提交认领意向"}
                       </Button>
                     </div>
                   </CardContent>
