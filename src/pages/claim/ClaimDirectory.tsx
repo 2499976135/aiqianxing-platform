@@ -72,17 +72,17 @@ export default function ClaimDirectory() {
     : null;
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-background">
       <div className="max-w-5xl mx-auto px-4 py-8">
         {/* 头部 */}
         <div className="text-center mb-8">
-          <div className="inline-block px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-medium mb-3">
+          <div className="inline-block px-3 py-1 bg-accent/10 text-accent rounded-full text-xs font-medium mb-3">
             公开目录 · 自助冠名
           </div>
-          <h1 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
             为爱黔行 · 待冠名公益点位
           </h1>
-          <p className="text-sm text-slate-500 max-w-md mx-auto">
+          <p className="text-sm text-muted-foreground max-w-md mx-auto">
             浏览全部待冠名的公益点位，在线提交意向认领。
             认领成功后点位将自动锁定，由机构人工确权后正式绑定。
           </p>
@@ -92,7 +92,7 @@ export default function ClaimDirectory() {
         <Card className="mb-6">
           <CardContent className="py-4 flex flex-col md:flex-row gap-3">
             <div className="relative flex-1">
-              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/70" />
               <Input
                 placeholder="搜索地区或点位名称..."
                 value={regionSearch}
@@ -101,7 +101,7 @@ export default function ClaimDirectory() {
               />
             </div>
             <div className="flex gap-2 items-center">
-              <Filter className="h-4 w-4 text-slate-400" />
+              <Filter className="h-4 w-4 text-muted-foreground/70" />
               <Select value={typeFilter} onValueChange={setTypeFilter}>
                 <SelectTrigger className="w-[160px]">
                   <SelectValue />
@@ -131,7 +131,7 @@ export default function ClaimDirectory() {
               return (
                 <Card
                   key={p.id}
-                  className={isLocked ? "border-amber-300 bg-amber-50/50" : ""}
+                  className={isLocked ? "border-warning/30 bg-warning/[0.04]" : ""}
                 >
                   <CardContent className="py-4">
                     <div className="flex items-start justify-between mb-2">
@@ -149,10 +149,10 @@ export default function ClaimDirectory() {
                       )}
                     </div>
                     <h3 className="font-semibold mb-1">{p.name}</h3>
-                    <div className="text-xs text-slate-500 mb-2 flex items-center gap-1">
+                    <div className="text-xs text-muted-foreground mb-2 flex items-center gap-1">
                       <MapPin className="h-3 w-3" /> {p.region}
                     </div>
-                    <p className="text-sm text-slate-600 leading-relaxed mb-3">
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                       {p.description}
                     </p>
                     <div className="flex items-center justify-between">
@@ -192,11 +192,11 @@ export default function ClaimDirectory() {
 
           {lockedPoint ? (
             <div className="py-4 text-center">
-              <Lock className="h-12 w-12 text-amber-500 mx-auto mb-3" />
-              <div className="font-medium text-amber-800 mb-2">
+              <Lock className="h-12 w-12 text-warning mx-auto mb-3" />
+              <div className="font-medium text-warning mb-2">
                 该点位已被他人锁定
               </div>
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-muted-foreground">
                 该点位认领审核中，若审核驳回将自动解锁。
                 <br />请选择其他点位或稍后再来。
               </p>
@@ -246,7 +246,7 @@ export default function ClaimDirectory() {
                   placeholder="给公益机构的一句话留言"
                 />
               </div>
-              <div className="text-xs text-amber-600 bg-amber-50 rounded p-2">
+              <div className="text-xs text-warning bg-warning/[0.07] rounded p-2">
                 ⚠️ 提交后该点位将自动锁定，其他人无法再认领。
                 机构人工审核通过后正式绑定冠名权益。
               </div>
@@ -281,11 +281,11 @@ export default function ClaimDirectory() {
               <DialogTitle>🎉 提交成功！</DialogTitle>
             </DialogHeader>
             <div className="py-2 text-center">
-              <Lock className="h-12 w-12 text-emerald-500 mx-auto mb-3" />
-              <p className="text-sm text-slate-600">
+              <Lock className="h-12 w-12 text-success mx-auto mb-3" />
+              <p className="text-sm text-muted-foreground">
                 您已成功提交对「<b>{successInfo.pointName}</b>」的认领意向。
               </p>
-              <p className="text-xs text-slate-500 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 该点位现已为您锁定，机构将在 3 个工作日内完成人工审核并通过您填写的联系方式与您沟通。
               </p>
               <Button

@@ -4,13 +4,13 @@ import { Home, Search } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
+    <div className="min-h-screen flex items-center justify-center paper-bg px-4">
       <div className="text-center">
         <div className="text-6xl mb-4">🔒</div>
-        <h1 className="text-2xl font-bold text-slate-900 mb-2">
+        <h1 className="text-2xl font-bold text-foreground mb-2">
           链接无效或已失效
         </h1>
-        <p className="text-slate-500 mb-6">
+        <p className="text-muted-foreground mb-6">
           抱歉，该专属链接可能已被重置或超出访问范围。请联系公益机构获取最新访问链接。
         </p>
         <div className="flex gap-3 justify-center">

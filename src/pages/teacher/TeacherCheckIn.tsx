@@ -117,11 +117,11 @@ export default function TeacherCheckIn() {
   // 学校不存在（链接错误或点位已结束）
   if (!point) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
+      <div className="min-h-screen flex items-center justify-center bg-background px-4">
         <div className="text-center max-w-sm">
-          <AlertCircle className="h-16 w-16 text-amber-500 mx-auto mb-4" />
+          <AlertCircle className="h-16 w-16 text-warning mx-auto mb-4" />
           <h1 className="text-lg font-bold mb-2">学校链接无效</h1>
-          <p className="text-slate-500 text-sm mb-6">
+          <p className="text-muted-foreground text-sm mb-6">
             抱歉，无法识别您的学校入口。请联系公益机构获取最新打卡链接。
           </p>
           <Button asChild variant="outline">
@@ -135,16 +135,16 @@ export default function TeacherCheckIn() {
   // 成功页
   if (success) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 to-sky-50 px-4">
+      <div className="min-h-screen flex items-center justify-center paper-bg px-4">
         <div className="text-center">
-          <div className="w-20 h-20 rounded-full bg-emerald-500 text-white flex items-center justify-center mx-auto mb-4">
+          <div className="w-20 h-20 rounded-full bg-success text-white flex items-center justify-center mx-auto mb-4">
             <CheckCircle2 className="h-10 w-10" />
           </div>
           <h1 className="text-xl font-bold mb-2">提交成功！</h1>
-          <p className="text-sm text-slate-600 mb-1">
+          <p className="text-sm text-muted-foreground mb-1">
             您的打卡已提交，等待机构审核中。
           </p>
-          <p className="text-xs text-slate-500 mb-6">
+          <p className="text-xs text-muted-foreground mb-6">
             审核结果将在 1-3 个工作日内通知您
           </p>
           <Button asChild>
@@ -158,15 +158,15 @@ export default function TeacherCheckIn() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-20">
+    <div className="min-h-screen bg-background pb-20">
       {/* 学校识别头部 */}
-      <div className="bg-gradient-to-br from-sky-600 to-sky-700 text-white px-5 pt-6 pb-4">
+      <div className="bg-primary text-primary-foreground px-5 pt-6 pb-4">
         <div className="text-xs opacity-80 mb-1">您正在打卡</div>
         <h1 className="text-lg font-bold leading-tight">{point.schoolName}</h1>
         <div className="flex items-center justify-between mt-3">
           <Badge
             variant="outline"
-            className="border-white/30 text-white/90 bg-white/10"
+            className="border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground/90"
           >
             {point.name}
           </Badge>
@@ -177,7 +177,7 @@ export default function TeacherCheckIn() {
               </>
             ) : (
               <>
-                <WifiOff className="h-3 w-3 text-amber-300" /> 离线（已本地暂存）
+                <WifiOff className="h-3 w-3 text-warning" /> 离线（已本地暂存）
               </>
             )}
           </div>
@@ -186,11 +186,11 @@ export default function TeacherCheckIn() {
 
       {/* 一屏表单 — 大字大按钮 */}
       <div className="px-4 -mt-2">
-        <div className="bg-white rounded-xl shadow-sm p-5 space-y-5">
+        <div className="bg-card rounded-xl shadow-sm p-5 space-y-5">
           {/* 姓名 */}
           <div>
             <label className="block text-base font-medium mb-2 flex items-center gap-2">
-              <User className="h-4 w-4 text-sky-600" /> 我的姓名
+              <User className="h-4 w-4 text-primary" /> 我的姓名
             </label>
             <Input
               size={undefined}
@@ -204,7 +204,7 @@ export default function TeacherCheckIn() {
           {/* 课程名称 */}
           <div>
             <label className="block text-base font-medium mb-2 flex items-center gap-2">
-              <BookOpen className="h-4 w-4 text-sky-600" /> 今天上的课
+              <BookOpen className="h-4 w-4 text-primary" /> 今天上的课
             </label>
             <Input
               className="h-14 text-base"
@@ -231,15 +231,15 @@ export default function TeacherCheckIn() {
           {/* 拍照 */}
           <div>
             <label className="block text-base font-medium mb-2 flex items-center gap-2">
-              <Camera className="h-4 w-4 text-sky-600" /> 拍几张照片
-              <span className="text-xs text-slate-400 ml-1 font-normal">
+              <Camera className="h-4 w-4 text-primary" /> 拍几张照片
+              <span className="text-xs text-muted-foreground/70 ml-1 font-normal">
                 （可多张，非必填）
               </span>
             </label>
             {images.length > 0 && (
               <div className="grid grid-cols-3 gap-2 mb-2">
                 {images.map((src, idx) => (
-                  <div key={idx} className="relative aspect-square rounded-lg overflow-hidden bg-slate-100">
+                  <div key={idx} className="relative aspect-square rounded-lg overflow-hidden bg-muted">
                     <img src={src} alt="" className="w-full h-full object-cover" />
                     <button
                       className="absolute top-1 right-1 w-6 h-6 rounded-full bg-black/50 text-white text-xs"
@@ -255,7 +255,7 @@ export default function TeacherCheckIn() {
             )}
             <button
               type="button"
-              className="w-full h-16 rounded-lg border-2 border-dashed border-slate-300 text-slate-500 text-base flex items-center justify-center gap-2 active:bg-slate-100"
+              className="w-full h-16 rounded-lg border-2 border-dashed border-border text-muted-foreground text-base flex items-center justify-center gap-2 active:bg-secondary"
               onClick={() => fileInputRef.current?.click()}
             >
               <Upload className="h-5 w-5" />
@@ -277,7 +277,7 @@ export default function TeacherCheckIn() {
         <div className="mt-4 text-center">
           <Link
             to={`/t/${schoolCode}/history`}
-            className="text-sm text-sky-600 inline-flex items-center gap-1"
+            className="text-sm text-primary inline-flex items-center gap-1"
           >
             <History className="h-4 w-4" /> 查看本校审核记录
           </Link>
@@ -285,7 +285,7 @@ export default function TeacherCheckIn() {
       </div>
 
       {/* 底部固定提交按钮 */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-4">
+      <div className="fixed bottom-0 left-0 right-0 bg-card border-t p-4">
         <Button
           className="w-full h-14 text-lg"
           size="lg"

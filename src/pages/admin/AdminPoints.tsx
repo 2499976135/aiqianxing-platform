@@ -46,7 +46,7 @@ export default function AdminPoints() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
           <h1 className="text-2xl font-bold">点位管理</h1>
-          <p className="text-sm text-slate-500 mt-1">
+          <p className="text-sm text-muted-foreground mt-1">
             建档维护长/短期公益点位及上下架状态
           </p>
         </div>
@@ -124,7 +124,7 @@ export default function AdminPoints() {
       <Card className="mb-4">
         <CardContent className="py-3 flex flex-col md:flex-row gap-3">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/70" />
             <Input
               placeholder="搜索点位名称或地区..."
               value={search}
@@ -167,18 +167,18 @@ export default function AdminPoints() {
             {filtered.map((p) => {
               const partner = partners.find((pt) => pt.id === p.partnerId);
               return (
-                <div key={p.id} className="p-4 flex flex-col md:flex-row md:items-center gap-3 hover:bg-slate-50 transition-colors">
-                  <div className="p-2 rounded-lg bg-blue-50 text-blue-600 w-fit">
+                <div key={p.id} className="p-4 flex flex-col md:flex-row md:items-center gap-3 hover:bg-secondary/60 transition-colors">
+                  <div className="p-2 rounded-lg bg-primary/[0.07] text-primary w-fit">
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
                       <span className="font-medium truncate">{p.name}</span>
                       {p.longTerm && (
-                        <span className="text-[10px] bg-violet-100 text-violet-700 px-1.5 py-0.5 rounded">长期</span>
+                        <span className="text-[10px] bg-accent/10 text-accent px-1.5 py-0.5 rounded">长期</span>
                       )}
                     </div>
-                    <div className="text-xs text-slate-500 mt-1">
+                    <div className="text-xs text-muted-foreground mt-1">
                       {POINT_TYPE_LABEL[p.type]} · {p.region}
                       {partner && <> · 合作方：{partner.name}</>}
                     </div>

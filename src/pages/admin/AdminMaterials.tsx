@@ -50,7 +50,7 @@ export default function AdminMaterials() {
     <div className="p-6 max-w-7xl">
       <div className="mb-6">
         <h1 className="text-2xl font-bold">素材中心</h1>
-        <p className="text-sm text-slate-500 mt-1">
+        <p className="text-sm text-muted-foreground mt-1">
           集中管理机构上传与老师打卡过审的照片视频
         </p>
       </div>
@@ -70,7 +70,7 @@ export default function AdminMaterials() {
         <TabsContent value="images">
           {allImages.length === 0 ? (
             <Card>
-              <CardContent className="py-16 text-center text-slate-400">
+              <CardContent className="py-16 text-center text-muted-foreground/70">
                 暂无过审素材
               </CardContent>
             </Card>
@@ -78,12 +78,12 @@ export default function AdminMaterials() {
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
               {allImages.map((item, idx) => (
                 <Card key={idx} className="overflow-hidden">
-                  <div className="aspect-square bg-slate-100">
+                  <div className="aspect-square bg-muted">
                     <NoDownloadMedia src={item.src} type="image" className="w-full h-full" />
                   </div>
                   <CardContent className="py-2 px-3">
                     <div className="text-xs font-medium truncate">{item.label}</div>
-                    <div className="text-[10px] text-slate-500 truncate">{item.sub}</div>
+                    <div className="text-[10px] text-muted-foreground truncate">{item.sub}</div>
                     {item.childrenPortrait && (
                       <Badge variant="warning" className="mt-1 text-[10px]">
                         <Shield className="h-2 w-2 mr-0.5" /> 儿童肖像
@@ -99,7 +99,7 @@ export default function AdminMaterials() {
         <TabsContent value="videos">
           {allVideos.length === 0 ? (
             <Card>
-              <CardContent className="py-16 text-center text-slate-400">
+              <CardContent className="py-16 text-center text-muted-foreground/70">
                 暂无过审视频素材
               </CardContent>
             </Card>
@@ -107,12 +107,12 @@ export default function AdminMaterials() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {allVideos.map((item, idx) => (
                 <Card key={idx}>
-                  <div className="aspect-video bg-slate-100">
+                  <div className="aspect-video bg-muted">
                     <NoDownloadMedia src={item.src} type="video" className="w-full h-full" />
                   </div>
                   <CardContent className="py-2 px-3">
                     <div className="text-xs font-medium">{item.label}</div>
-                    <div className="text-[10px] text-slate-500">{item.sub}</div>
+                    <div className="text-[10px] text-muted-foreground">{item.sub}</div>
                   </CardContent>
                 </Card>
               ))}

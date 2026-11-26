@@ -25,11 +25,11 @@ export default function PartnerFeedback() {
 
   if (!result) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
+      <div className="min-h-screen flex items-center justify-center bg-background px-4">
         <div className="text-center max-w-md">
-          <AlertTriangle className="h-16 w-16 text-amber-500 mx-auto mb-4" />
+          <AlertTriangle className="h-16 w-16 text-warning mx-auto mb-4" />
           <h1 className="text-xl font-bold mb-2">链接无效或已失效</h1>
-          <p className="text-slate-500 text-sm mb-6 leading-relaxed">
+          <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
             抱歉，您访问的专属链接可能已被重置或超出访问范围。
             <br />请联系公益机构对接人获取最新访问链接。
           </p>
@@ -53,20 +53,20 @@ export default function PartnerFeedback() {
     );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-emerald-50">
+    <div className="min-h-screen paper-bg">
       <div className="max-w-4xl mx-auto px-4 py-8 md:py-12">
         {/* 头部信息 */}
-        <Card className="bg-gradient-to-r from-sky-100 to-emerald-100 border-0 mb-6">
+        <Card className="border border-border bg-card shadow-soft mb-6">
           <CardContent className="py-6">
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-xl bg-white shadow-sm">
-                <Building2 className="h-8 w-8 text-sky-600" />
+              <div className="p-3 rounded-xl bg-card shadow-sm">
+                <Building2 className="h-8 w-8 text-primary" />
               </div>
               <div className="flex-1">
-                <div className="text-xs text-slate-600 mb-1">
+                <div className="text-xs text-muted-foreground mb-1">
                   为爱黔行公益 · 专属进展反馈
                 </div>
-                <h1 className="text-xl md:text-2xl font-bold text-slate-900">
+                <h1 className="text-xl md:text-2xl font-bold text-foreground">
                   {partner.name}
                 </h1>
                 <div className="flex flex-wrap gap-2 mt-3">
@@ -95,14 +95,14 @@ export default function PartnerFeedback() {
           <Card key={p.id} className="mb-6">
             <CardContent className="py-4">
               <div className="flex items-center gap-2 mb-2">
-                <MapPin className="h-4 w-4 text-slate-400" />
+                <MapPin className="h-4 w-4 text-muted-foreground/70" />
                 <span className="text-sm font-medium">{p.name}</span>
               </div>
-              <div className="text-xs text-slate-500 mb-3">{p.region}</div>
-              <p className="text-sm text-slate-700 leading-relaxed">
+              <div className="text-xs text-muted-foreground mb-3">{p.region}</div>
+              <p className="text-sm text-foreground/85 leading-relaxed">
                 {p.description}
               </p>
-              <div className="flex flex-wrap gap-4 mt-3 text-xs text-slate-500">
+              <div className="flex flex-wrap gap-4 mt-3 text-xs text-muted-foreground">
                 <span className="flex items-center gap-1">
                   <Calendar className="h-3 w-3" /> 创建于 {p.createdAt}
                 </span>
@@ -112,7 +112,7 @@ export default function PartnerFeedback() {
                   </span>
                 )}
                 {p.completedAt && (
-                  <span className="text-emerald-600">
+                  <span className="text-success">
                     ✅ {p.completedAt} 已结项
                   </span>
                 )}
@@ -123,7 +123,7 @@ export default function PartnerFeedback() {
 
         {/* 进展时间线 */}
         <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-          <Calendar className="h-5 w-5 text-sky-600" />
+          <Calendar className="h-5 w-5 text-primary" />
           项目进展（按时间倒序）
         </h2>
 
@@ -134,17 +134,17 @@ export default function PartnerFeedback() {
             description="机构正在整理项目进展，将陆续在此更新"
           />
         ) : (
-          <div className="relative pl-6 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-200">
+          <div className="relative pl-6 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-border">
             {myProgress.map((pr) => (
               <div key={pr.id} className="relative mb-6 last:mb-0">
-                <div className="absolute -left-[17px] top-2 w-3 h-3 rounded-full bg-sky-500 ring-2 ring-white" />
+                <div className="absolute -left-[17px] top-2 w-3 h-3 rounded-full bg-accent ring-2 ring-card" />
                 <Card>
                   <CardContent className="py-4">
-                    <div className="text-xs text-slate-500 mb-1">
+                    <div className="text-xs text-muted-foreground mb-1">
                       {pr.publishedAt}
                     </div>
                     <h3 className="font-semibold mb-2">{pr.title}</h3>
-                    <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">
+                    <p className="text-sm text-foreground/85 leading-relaxed whitespace-pre-line">
                       {pr.content}
                     </p>
                     {pr.images.length > 0 && (
@@ -158,7 +158,7 @@ export default function PartnerFeedback() {
                         {pr.images.map((img, idx) => (
                           <div
                             key={idx}
-                            className="aspect-video rounded-md overflow-hidden bg-slate-100"
+                            className="aspect-video rounded-md overflow-hidden bg-muted"
                           >
                             <NoDownloadMedia
                               src={img}
@@ -174,7 +174,7 @@ export default function PartnerFeedback() {
                         {pr.videos.map((v, idx) => (
                           <div
                             key={idx}
-                            className="aspect-video rounded-md overflow-hidden bg-slate-100"
+                            className="aspect-video rounded-md overflow-hidden bg-muted"
                           >
                             <NoDownloadMedia
                               src={v}
@@ -192,7 +192,7 @@ export default function PartnerFeedback() {
           </div>
         )}
 
-        <div className="text-center text-xs text-slate-400 mt-12 pb-4">
+        <div className="text-center text-xs text-muted-foreground/70 mt-12 pb-4">
           © 贵州省为爱黔行公益服务中心 · 本页面内容受版权保护
         </div>
       </div>

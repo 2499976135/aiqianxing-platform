@@ -19,9 +19,9 @@ export default function TeacherHistory() {
   const checkIns = schoolCode ? getCheckInsBySchoolCode(schoolCode) : [];
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-background">
       {/* 头部 */}
-      <div className="bg-sky-700 text-white px-4 pt-6 pb-5">
+      <div className="bg-primary text-primary-foreground px-4 pt-6 pb-5">
         <Link to={`/t/${schoolCode}`} className="inline-flex items-center gap-1 text-sm opacity-90">
           <ArrowLeft className="h-4 w-4" /> 返回打卡
         </Link>
@@ -40,7 +40,7 @@ export default function TeacherHistory() {
             {checkIns.map((ci) => (
               <div
                 key={ci.id}
-                className="bg-white rounded-lg shadow-sm p-4"
+                className="bg-card rounded-lg shadow-sm p-4"
               >
                 <div className="flex items-center justify-between mb-2">
                   <div className="font-medium">{ci.courseName}</div>
@@ -70,16 +70,16 @@ export default function TeacherHistory() {
                   </Badge>
                 </div>
 
-                <div className="text-xs text-slate-500 mb-2 flex items-center gap-1">
+                <div className="text-xs text-muted-foreground mb-2 flex items-center gap-1">
                   <Clock className="h-3 w-3" /> {ci.submittedAt} · {ci.teacherName}
                 </div>
 
-                <p className="text-sm text-slate-700 leading-relaxed">
+                <p className="text-sm text-foreground/85 leading-relaxed">
                   {ci.content}
                 </p>
 
                 {ci.reviewNote && (
-                  <div className="mt-2 pt-2 border-t text-xs text-amber-700 bg-amber-50 rounded p-2">
+                  <div className="mt-2 pt-2 border-t text-xs text-warning bg-warning/[0.07] rounded p-2">
                     <b>机构回复：</b> {ci.reviewNote}
                   </div>
                 )}

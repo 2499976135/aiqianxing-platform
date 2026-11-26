@@ -25,16 +25,16 @@ export default function AdminReviews() {
           <div className="flex items-start justify-between mb-3">
             <div>
               <div className="font-medium">{c.partnerName}</div>
-              <div className="text-xs text-slate-500 mt-0.5">
+              <div className="text-xs text-muted-foreground mt-0.5">
                 {PARTNER_TYPE_LABEL[c.partnerType]} · {c.contactPerson} · {c.contactPhone}
               </div>
               {point && (
-                <div className="text-xs text-slate-600 mt-2 bg-slate-50 rounded px-2 py-1 inline-block">
+                <div className="text-xs text-muted-foreground mt-2 bg-background rounded px-2 py-1 inline-block">
                   申请认领：{point.name}
                 </div>
               )}
               {c.message && (
-                <p className="text-sm text-slate-600 mt-2 italic">"{c.message}"</p>
+                <p className="text-sm text-muted-foreground mt-2 italic">"{c.message}"</p>
               )}
             </div>
             <Badge variant={
@@ -88,7 +88,7 @@ export default function AdminReviews() {
             </div>
           ) : (
             c.reviewNote && (
-              <div className="text-xs text-slate-500 pt-2 border-t">
+              <div className="text-xs text-muted-foreground pt-2 border-t">
                 审核备注：{c.reviewNote}
               </div>
             )
@@ -107,11 +107,11 @@ export default function AdminReviews() {
               <div className="font-medium">
                 {ci.teacherName} · {ci.schoolName}
               </div>
-              <div className="text-xs text-slate-500 mt-0.5">
+              <div className="text-xs text-muted-foreground mt-0.5">
                 {ci.submittedAt} · 提交了 {ci.images.length} 张图 {ci.videos.length} 个视频
               </div>
               <div className="text-sm mt-2 font-medium">{ci.courseName}</div>
-              <p className="text-sm text-slate-600 mt-1">{ci.content}</p>
+              <p className="text-sm text-muted-foreground mt-1">{ci.content}</p>
             </div>
             <Badge variant={
               ci.status === "pending" ? "warning" :
@@ -161,7 +161,7 @@ export default function AdminReviews() {
     <div className="p-6 max-w-4xl">
       <div className="mb-6">
         <h1 className="text-2xl font-bold">审核队列</h1>
-        <p className="text-sm text-slate-500 mt-1">
+        <p className="text-sm text-muted-foreground mt-1">
           认领与打卡双队列审核工作台，左侧导航红点提示待审数量
         </p>
       </div>
@@ -179,7 +179,7 @@ export default function AdminReviews() {
         <TabsContent value="claims">
           {claims.filter((c) => c.status === "pending").length === 0 &&
           claims.length > 0 ? (
-            <div className="text-center py-8 text-slate-400">
+            <div className="text-center py-8 text-muted-foreground/70">
               ✨ 全部认领申请已处理
             </div>
           ) : (
@@ -187,7 +187,7 @@ export default function AdminReviews() {
               {claims.filter((c) => c.status === "pending").map(renderClaimCard)}
               {claims.filter((c) => c.status === "pending").length === 0 && (
                 <Card>
-                  <CardContent className="py-16 text-center text-slate-400">
+                  <CardContent className="py-16 text-center text-muted-foreground/70">
                     <AlertCircle className="h-8 w-8 mx-auto mb-2 opacity-50" />
                     暂无待审核认领申请
                   </CardContent>
@@ -196,7 +196,7 @@ export default function AdminReviews() {
               {claims.filter((c) => c.status !== "pending").length > 0 && (
                 <div className="mt-6">
                   <CardHeader>
-                    <CardTitle className="text-sm text-slate-500">已处理</CardTitle>
+                    <CardTitle className="text-sm text-muted-foreground">已处理</CardTitle>
                   </CardHeader>
                   {claims.filter((c) => c.status !== "pending").map(renderClaimCard)}
                 </div>
@@ -208,7 +208,7 @@ export default function AdminReviews() {
         <TabsContent value="checkins">
           {checkIns.filter((c) => c.status === "pending").length === 0 ? (
             <Card>
-              <CardContent className="py-16 text-center text-slate-400">
+              <CardContent className="py-16 text-center text-muted-foreground/70">
                 暂无待审核打卡记录
               </CardContent>
             </Card>

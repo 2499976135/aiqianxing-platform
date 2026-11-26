@@ -27,7 +27,7 @@ export default function AdminLinks() {
     <div className="p-6 max-w-5xl">
       <div className="mb-6">
         <h1 className="text-2xl font-bold">专属链接管理</h1>
-        <p className="text-sm text-slate-500 mt-1">
+        <p className="text-sm text-muted-foreground mt-1">
           为每位合作方生成不可预测的专属链接，支持一键失效与重置
         </p>
       </div>
@@ -44,7 +44,7 @@ export default function AdminLinks() {
                 <div className="flex flex-col md:flex-row md:items-center gap-4">
                   <div className="flex-1 min-w-0">
                     <div className="font-medium truncate">{p.name}</div>
-                    <div className="text-xs text-slate-500 mt-0.5">
+                    <div className="text-xs text-muted-foreground mt-0.5">
                       合作方：{partner?.name ?? "未绑定"} · {POINT_STATUS_LABEL[p.status]}
                     </div>
                   </div>
@@ -62,8 +62,8 @@ export default function AdminLinks() {
                 </div>
 
                 {url && (
-                  <div className="mt-3 bg-slate-50 rounded-md px-3 py-2 flex items-center gap-2">
-                    <code className="text-xs text-slate-700 flex-1 truncate">
+                  <div className="mt-3 bg-background rounded-md px-3 py-2 flex items-center gap-2">
+                    <code className="text-xs text-foreground/85 flex-1 truncate">
                       {url}
                     </code>
                     {!p.tokenRevoked && (
@@ -122,7 +122,7 @@ export default function AdminLinks() {
             <CardHeader>
               <CardTitle className="text-base">暂无已认领点位</CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-slate-500">
+            <CardContent className="text-sm text-muted-foreground">
               点位经认领审核通过后，系统会自动为合作方生成专属访问链接。
             </CardContent>
           </Card>
